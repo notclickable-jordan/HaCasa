@@ -1,183 +1,119 @@
-<div align="center">
+# HaCasa Button Card styles
 
-<img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/logo/hacasa-banner.svg" alt="HaCasa" width="280">
+Reusable [Button Card](https://github.com/custom-cards/button-card) templates
+from [Damian Eickhoff's HaCasa v2 legacy branch](https://github.com/damianeickhoff/HaCasa/tree/legacy),
+imported at revision `1d1da03fe9298b96348894c74a019bcbb2177b91`.
+This is a manual-install collection, not HaCasa Nova or a complete dashboard.
+The upstream templates are no longer maintained.
 
-# HaCasa Nova
+## Contents
 
-**The HaCasa reboot.** A room-first Home Assistant panel, built on the [Homio](https://github.com/iamtherufus/Homio) design by [iamtherufus](https://github.com/iamtherufus).
+- **17 YAML files / 20 named templates:** the 15 card files plus shared base
+  and badge templates. Includes climate, fan, glance, graph, header, light,
+  media, navigation, navigation bar, scene, security, sensor, switch, title
+  and weather cards, and their named variants.
+- **One card-support theme:** card colors, typography, sliders and light/dark
+  variables only; no kiosk mode, header hiding, view layout or popup theme.
+- **Eight custom icons, 12 weather SVGs and one idle-media GIF:** only assets
+  referenced by the retained templates.
+- This README and the upstream MIT license. No Nova code, bundle, build tools,
+  dashboard/views, example entities, screenshots, site or HACS manifest.
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5?style=flat-square)](https://hacs.xyz/docs/faq/custom_repositories/)
-[![Release](https://img.shields.io/github/v/release/damianeickhoff/HaCasa?style=flat-square&label=release)](https://github.com/damianeickhoff/HaCasa/releases)
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.4%2B-18BCF2?style=flat-square)](https://www.home-assistant.io/)
-[![License](https://img.shields.io/github/license/damianeickhoff/HaCasa?style=flat-square)](https://github.com/damianeickhoff/HaCasa/blob/main/LICENSE)
-
-[Documentation](https://damianeickhoff.github.io/HaCasa/) · [Demo video](https://damianeickhoff.github.io/HaCasa/#demo) · [Install](#install) · [Discussions](https://github.com/damianeickhoff/HaCasa/discussions) · [Screenshots](#screenshots) · [HaCasa v2 (legacy)](https://github.com/damianeickhoff/HaCasa/tree/legacy)
-
-<a href="https://damianeickhoff.github.io/HaCasa/#demo"><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/demo/poster-play.webp" alt="HaCasa Nova: watch the 40-second demo" width="100%"></a>
-
-<sub>▶ Click to watch the 40-second demo</sub>
-
-</div>
-
-> ⚠️ **HaCasa Nova is a work in progress and needs testing.** This first release has only been run on a handful of homes, so expect rough edges: things may break or change between versions. Try it next to your current dashboard rather than replacing it, and please [report what you run into](https://github.com/damianeickhoff/HaCasa/issues/new/choose). Known issues are tracked in [#158](https://github.com/damianeickhoff/HaCasa/issues/158).
-
-## Why a reboot?
-
-HaCasa started as a set of button-card templates: a calm, good-looking dashboard that the whole household could use. It grew to almost 500 stars, and then it stalled, because every new device meant more YAML and every Home Assistant update risked breaking a template.
-
-**HaCasa Nova** keeps the idea and throws out the YAML. It is a single JavaScript file that reads your home straight from Home Assistant:
-
-- **Your areas become rooms.** Every entity assigned to an area (directly or through its device) shows up on that room's page. Add a lamp in Home Assistant and it appears; no dashboard to edit.
-- **Everything is set up in the panel.** A four-step wizard on first open, then a settings page with tabs. Settings are stored per Home Assistant user, so they follow you to every device and survive updates.
-- **No dependencies.** No button-card, card-mod, layout-card or theme required.
-
-The look comes from [Homio](https://github.com/iamtherufus/Homio) by iamtherufus: big photo backgrounds, frosted-glass cards, a pill navigation and a lot of breathing room. Nova rebuilds that design as a native panel and adds HaCasa's focus on being friendly for everyone in the house.
-
-## Features
-
-| | |
-|---|---|
-| **Home view** | Greeting, date, indoor climate, weather with hourly forecast, a rotating line of things worth knowing (waste pickup, open doors, appointments), status pills and quick actions. |
-| **Room pages** | One page per area with a photo, its temperature and humidity, and a scrolling strip of cards. Swipe or scroll between rooms. |
-| **Cards** | Lights (vertical dimmer, brightness steps or colour dots), switches and smart plugs (live watts, kWh today, timers), media with artwork and transport, covers, thermostats (drag rail, modes, presets), fans, locks, vacuums, humidifiers, cameras, appliances (Home Connect, Miele …: programme, progress, finish time), groups, scenes and Jinja template cards. |
-| **Pages** | Sensors (attention first, per room or per kind, trend bars), Energy (today per hour, biggest consumers), Automations (toggle, errors, last run), Cameras and System (CPU, memory, disk, network, updates). |
-| **Attention** | Unavailable devices, low batteries, pending updates and persistent notifications in one place, with one-tap install for updates. |
-| **Popups** | Every card opens a detailed popup: brightness, colour and colour temperature, climate modes, media volume, history of the last 24 hours, and a shortcut to Home Assistant's own dialog. |
-| **Per-card settings** | Name, icon, tap and hold behaviour, bottom line, custom action buttons and template overrides per card, plus defaults per card type. |
-| **Extras** | Search, presence pill, alarm keypad, doorbell camera popup, light scene presets per room, guest and vacation modes, idle screen, Dutch and English. |
-| **Phone and tablet** | Built for wall tablets and phones alike: the strip becomes a two-column grid on phones. |
-
-## Screenshots
-
-<table>
-  <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/room.png" alt="Room page"><br><sub><b>Room page</b> · photo, climate and a strip of cards</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/kitchen.png" alt="Kitchen"><br><sub><b>Appliances and plugs</b> · power strips, dishwasher programme and progress</sub></td>
-  </tr>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/popup-light.png" alt="Light popup"><br><sub><b>Light popup</b> · brightness, colour and colour temperature</sub></td>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/popup-climate.png" alt="Climate popup"><br><sub><b>Climate popup</b> · target, modes, presets, every room's temperature</sub></td>
-  </tr>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/sensors.png" alt="Sensors page"><br><sub><b>Sensors</b> · attention first, then every room</sub></td>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/energy.png" alt="Energy page"><br><sub><b>Energy</b> · now, today per hour, biggest consumers</sub></td>
-  </tr>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/settings.png" alt="Settings"><br><sub><b>Settings</b> · everything in the panel, stored per user</sub></td>
-    <td><img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/wizard.png" alt="Setup wizard"><br><sub><b>First run</b> · a four-step setup</sub></td>
-  </tr>
-</table>
-
-<img src="https://raw.githubusercontent.com/damianeickhoff/HaCasa/main/docs/assets/screenshots/phones.png" alt="HaCasa Nova on phones" width="100%">
+Templates retain upstream behavior, except `fapro:` icon references use
+`local:` for the current Custom Icons integration. The support theme is trimmed
+from the upstream Peach theme, with definitions for otherwise missing card
+variables. It does not install or replace your dashboard.
 
 ## Install
 
-You need Home Assistant **2024.4 or newer**. HaCasa Nova can run as its own sidebar panel (recommended) or as a card inside a dashboard.
+1. Install [Button Card](https://github.com/custom-cards/button-card) through
+   HACS and ensure its JavaScript resource is loaded.
+2. Install the resources used by the templates you select:
 
-### 1. Download with HACS
+   | Resource | Templates |
+   | --- | --- |
+   | [My Cards](https://github.com/AnthonMS/my-cards), providing `custom:my-slider-v2` | Light and fan cards |
+   | [Mini Graph Card](https://github.com/kalkih/mini-graph-card) | Graph, climate and switch cards |
+   | [Card Mod](https://github.com/thomasloven/lovelace-card-mod) | Graph, climate, switch and navigation bar cards |
+   | [Custom Icons](https://github.com/thomasloven/hass-custom_icons) integration | Default light, fan and security icons |
 
-1. Open **HACS** in Home Assistant.
-2. Open the menu (⋮, top right) and choose **Custom repositories**.
-3. Add `https://github.com/damianeickhoff/HaCasa` with type **Dashboard**.
-4. Search for **HaCasa Nova**, open it and choose **Download**.
-5. Reload your browser when HACS asks.
+   Hidden nested cards can still need their resources. Install the listed
+   resource even if a slider or graph is visually disabled, or remove that
+   nested card from your local template copy.
+3. Copy `HaCasa/dashboard/HaCasa/templates/` to
+   `/config/dashboard/HaCasa/templates/`.
+4. Copy `HaCasa/www/images/` to `/config/www/images/`, preserving paths.
+5. Copy the eight files in `HaCasa/custom_icons/` into
+   `/config/custom_icons/`. In Custom Icons, enable **Local**, reload the icon
+   collection and refresh your browser.
+6. Copy `HaCasa/themes/hacasa-card-styles.yaml` to
+   `/config/themes/hacasa-card-styles.yaml`. Merge this into your existing
+   `configuration.yaml` (do not duplicate `frontend:`):
 
-<details>
-<summary>Manual download (without HACS)</summary>
+   ```yaml
+   frontend:
+     themes: !include_dir_merge_named themes
+   ```
 
-1. Download `hacasa-nova.js` from the [latest release](https://github.com/damianeickhoff/HaCasa/releases/latest).
-2. Copy it to `/config/www/hacasa-nova/hacasa-nova.js`.
-3. Use `/local/hacasa-nova/hacasa-nova.js` wherever the steps below say `/hacsfiles/HaCasa/hacasa-nova.js`.
+   Reload themes or restart Home Assistant and select **HaCasa Card Styles**
+   in your user profile.
 
-</details>
+## Use in your existing dashboard
 
-### 2a. Add it as a sidebar panel (recommended)
-
-Add this to `configuration.yaml` and restart Home Assistant:
-
-```yaml
-frontend:
-  extra_module_url:
-    - /hacsfiles/HaCasa/hacasa-nova.js   # loads the HaCasa logo icon for the sidebar
-
-panel_custom:
-  - name: hacasa-nova
-    url_path: hacasa
-    sidebar_title: HaCasa
-    sidebar_icon: hacasa:logo
-    module_url: /hacsfiles/HaCasa/hacasa-nova.js
-```
-
-**HaCasa** now appears in the sidebar with the HaCasa logo. Open it and the setup wizard starts.
-
-> 💡 Already have a `frontend:` section (for themes, for example)? Add `extra_module_url` to it instead of adding a second one. Without `extra_module_url` the panel still works; use `sidebar_icon: mdi:home-outline` then, because the logo icon only loads once the panel has been opened.
-
-The icon works everywhere Home Assistant takes an icon, so `hacasa:logo` can also be used on your own cards.
-
-### 2b. Or use it as a dashboard card (no YAML)
-
-HACS registers the file as a dashboard resource for you. Then:
-
-1. **Settings → Dashboards → Add dashboard → New dashboard from scratch**, then open it.
-2. Edit the dashboard, change the view type to **Panel (single card)**.
-3. Add a card of type **HaCasa Nova** (or paste the YAML below).
+In a **YAML-mode dashboard**, add this at the root of its YAML file, alongside
+your existing `views:`. Home Assistant's directory include loads subdirectories,
+so the shared base templates are included too:
 
 ```yaml
-type: custom:hacasa-nova-card
+button_card_templates: !include_dir_merge_named /config/dashboard/HaCasa/templates/
 ```
 
-Inside a card the rooms are routed through the URL hash (`#/kitchen`), so the dashboard URL itself never changes.
+Then add a card to any existing view, replacing the entity with one of yours:
 
-### 3. Add room photos (optional)
-
-Put a photo per room in `/config/www/images/rooms/`, named after the area: `Living room` → `living-room.jpg` (`.jpeg`, `.png` and `.webp` work too). The home view uses `home.jpg`. You can also set a picture on the area in Home Assistant, or choose a photo per page in the panel settings. Rooms without a photo get a calm gradient.
-
-That's it. Everything else lives in the panel: **More → Panel settings**.
-
-> 💡 **For the best experience**, make HaCasa Nova your start page and hide Home Assistant's sidebar. Both are one click per user; see [Best experience](https://damianeickhoff.github.io/HaCasa/best-experience/) in the docs, which also has tips for wall tablets.
-
-## Documentation
-
-The full guide is at **[damianeickhoff.github.io/HaCasa](https://damianeickhoff.github.io/HaCasa/)**: installation, the setup wizard, every card and its settings, the built-in pages, the optional theme for the rest of Home Assistant, and troubleshooting.
-
-## Good to know
-
-- **Admin features.** Template cards and your own ticker lines use Home Assistant's template renderer, installing updates calls `update.install`, and the System page asks the Supervisor for host info. These need an administrator account; for other users those parts stay empty.
-- **Fonts.** The panel uses [Hanken Grotesk](https://fonts.google.com/specimen/Hanken+Grotesk) from Google Fonts. Without internet access it falls back to the system font.
-- **Languages.** English and Dutch, following your Home Assistant language. Other languages fall back to English. Translations are welcome: see [`src/i18n.js`](https://github.com/damianeickhoff/HaCasa/blob/main/src/i18n.js).
-
-## Community
-
-- **Questions and help:** [Discussions → Q&A](https://github.com/damianeickhoff/HaCasa/discussions/categories/q-a)
-- **Show your setup:** [Discussions → Show and tell](https://github.com/damianeickhoff/HaCasa/discussions/categories/show-and-tell)
-- **Ideas:** [Discussions → Ideas](https://github.com/damianeickhoff/HaCasa/discussions/categories/ideas)
-- **Bugs:** [open an issue](https://github.com/damianeickhoff/HaCasa/issues/new/choose); known issues are in [#158](https://github.com/damianeickhoff/HaCasa/issues/158)
-- **Want to help?** See [CONTRIBUTING.md](https://github.com/damianeickhoff/HaCasa/blob/main/CONTRIBUTING.md)
-
-## HaCasa v2 (legacy)
-
-The original button-card based HaCasa is kept on the [`legacy`](https://github.com/damianeickhoff/HaCasa/tree/legacy) branch, with its releases up to v2.1.3. It is no longer maintained.
-
-## Development
-
-```bash
-npm install
-npm run watch            # rebuilds dist/hacasa-nova.js on every change
-npx http-server .. -p 8097 -c-1
-# open http://localhost:8097/<this folder>/dev/index.html
-npm run deploy:dev       # a dev panel in your own Home Assistant, next to the HACS one
+```yaml
+type: custom:button-card
+template: hc_light_card
+entity: light.living_room
+name: Living room
+tap_action:
+  action: toggle
+variables:
+  enable_slider: false
 ```
 
-`dev/index.html` runs the panel outside Home Assistant against a mock home (`dev/mock-hass.js`); add `?lang=nl` for Dutch. `dev/card.html?fresh` shows the card wrapper with the first-run wizard. Icons are drawn by `dev/make-icons.mjs` and inlined into the bundle by `build.mjs`. See the [development guide](https://damianeickhoff.github.io/HaCasa/development/) for more.
+For a **storage/UI-mode dashboard**, `!include` directives are not supported.
+Merge the contents of all 17 template YAML files into a single
+`button_card_templates:` mapping in that dashboard's raw configuration editor.
+Do not paste the filenames or add a second `button_card_templates:` key.
 
-## Credits
+Each named template's `variables:` mapping describes its options. Supply your
+own entities, navigation paths and actions. In particular, configure glance
+entities, scene/input-select options and navigation bar items before using
+those cards. Override the title back button's inherited `/home` navigation
+path for your dashboard. Do not store alarm codes in shared/public YAML.
 
-- **Design:** [Homio](https://github.com/iamtherufus/Homio) by [iamtherufus](https://github.com/iamtherufus). HaCasa Nova would not look the way it does without it.
-- **HaCasa:** created by [Damian Eickhoff](https://github.com/damianeickhoff). HaCasa logo by [Fredrik Persson](https://github.com/fredrikpersson92).
-- **Built with** [Lit](https://lit.dev). Icons are original, drawn for this project.
-- **Made with AI assistance.** HaCasa Nova was written together with an AI coding assistant ([Claude Code](https://claude.com/claude-code)). The design decisions, the testing and the maintenance are mine; much of the code was written by the AI under my direction, which is why you'll see it credited in the commit history. It is also what made bringing HaCasa back possible at all.
-- **And the community**, who kept asking about HaCasa long after it went quiet. This one is for you. 💜
+## Legacy limitations
 
-## License
+These are extracted legacy templates, not a compatibility rewrite. Static
+YAML, JavaScript syntax and reference checks are not a Home Assistant runtime
+test. Some cards assume entity-specific attributes.
 
-[MIT](https://github.com/damianeickhoff/HaCasa/blob/main/LICENSE). The Homio design credit and the license notices of what is bundled are in [NOTICE.md](https://github.com/damianeickhoff/HaCasa/blob/main/NOTICE.md).
+- The weather forecast reads the old `attributes.forecast` array (at least
+  four entries). Modern weather entities generally do not expose it.
+  Disable it with `variables: {show_forecast: false}`; if your Button Card
+  version still evaluates hidden nested cards, remove `custom_fields.f`
+  from your local weather template or provide a compatible forecast entity.
+- The supplied weather art covers only `clear-night`, `cloudy`, `partlycloudy`,
+  `rainy`, `snowy` and `sunny`. Other conditions generate filenames not present
+  upstream; supply corresponding art or customize the weather/header templates
+  if you need those conditions.
+- Colors use the original `ha-card-backgound-active` spelling intentionally,
+  because the scene template references it.
+
+## Attribution and license
+
+HaCasa templates and assets were created by
+[Damian Eickhoff](https://github.com/damianeickhoff) and the
+[HaCasa contributors](https://github.com/damianeickhoff/HaCasa/graphs/contributors).
+Button Card is maintained by the custom-cards project.
+The original MIT copyright and permission notice are preserved in [LICENSE](LICENSE).
