@@ -1,0 +1,63 @@
+HaCasa Card Styles:
+  ha-card-border-radius: 20px
+  ha-card-border-width: 0px
+  primary-font-family: montserrat, Roboto, system-ui
+  ha-card-header-font-family: var(--primary-font-family)
+  mdc-typography-font-family: var(--primary-font-family)
+  font-size-primary: 14px
+  font-size-secondary: 12px
+  font-weight-primary: 700
+  font-weight-secondary: 500
+  color-green: '#93d385'
+  color-red: '#f06767'
+  color-blue: '#67b0f0'
+  color-yellow: '#f0d467'
+  color-purple: '#b785d3'
+  color-orange: '#f0b467'
+  color-white: '#ffffff'
+  primary-color: '#ffa08a'
+  ha-card-backgound-active: var(--primary-color)
+  icon-color-default: var(--icon-color)
+  background-icon-color-default: var(--opacity-contrast-100)
+  background: var(--button-card-background)
+  slider-color: var(--opacity-contrast-100)
+  md-slider-active-track-color: white
+  md-slider-inactive-track-color: rgba(255,255,255,.2)
+  md-slider-handle-color: white
+  md-slider-focus-handle-color: white
+  md-slider-hover-handle-color: '#dbdbdb'
+  md-slider-handle-shadow-color: none
+  md-slider-pressed-handle-color: '#dbdbdb'
+  md-slider-handle-width: 0px
+  md-slider-handle-height: 0px
+  md-ripple-hover-color: transparent
+  md-slider-label-container-color: transparent
+  md-slider-label-container-height: 0px
+  md-slider-label-text-color: transparent
+  md-slider-hover-state-layer-color: white
+  md-slider-pressed-state-layer-color: white
+  modes:
+    light:
+      icon-color: '#cccfd9'
+      opacity-contrast-100: rgba(255,255,255,.2)
+      opacity-contrast-0: rgba(0,0,0,.2)
+      subtext-color: var(--icon-color)
+      button-card-background: '#f2f2f2'
+      primary-text-color: '#48506f'
+      ha-card-background: '#ffffff'
+      ha-card-box-shadow: none
+      color-dark-gray: var(--primary-text-color)
+      color-light-gray-nav: var(--button-card-background)
+      weather-card-overlay: transparent
+    dark:
+      icon-color: var(--primary-text-color)
+      opacity-contrast-100: rgba(255,255,255,.2)
+      opacity-contrast-0: rgba(255,255,255,.2)
+      subtext-color: '#6f6f6f'
+      button-card-background: '#202020'
+      primary-text-color: '#f5f5f5'
+      ha-card-background: '#1a1a1a'
+      ha-card-box-shadow: none
+      color-dark-gray: var(--primary-text-color)
+      color-light-gray-nav: var(--button-card-background)
+      weather-card-overlay: 'linear-gradient(0deg, rgba(0,0,0,0.5676471272102591) 0%, rgba(0,0,0,1) 93%)'
